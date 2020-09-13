@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+    <script>
+       if(window.localStorage.getItem('session') == null)
+       {
+            window.location.href = "login.html";
+       }
+
+       function clockUpdate() {
+        var date = new Date();
+        
+        function addZero(x) {
+            if (x < 10) {
+                return x = '0' + x;
+            } else {
+                return x;
+            }
+        }
+
+        function twelveHour(x) {
+            if (x > 12) {
+                return x = x - 12;
+            } else if (x == 0) {
+                return x = 12;
+            } else {
+                return x;
+            }
+        }
+
+        var h = addZero(twelveHour(date.getHours()));
+        var m = addZero(date.getMinutes());
+        var s = addZero(date.getSeconds());
+
+        $('#clock').text(h + ':' + m + ':' + s);
+       }
+
+       setInterval(clockUpdate,100);
+    </script>
+
+</head>
+<body>
+    <h1><span id="clock"></span></h1>
+    <button id="btn">Hello</button>
+    <p id="logout">Logout</p>
+</body>
+</html>
